@@ -1,0 +1,69 @@
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
+    <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+            aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href=" {{ url('/redirect-login') }} ">
+            <span class="ms-1 font-weight-bold">Video Akses</span>
+        </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}"
+                    href="{{ url('admin/dashboard') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/videos*') ? 'active' : '' }}"
+                    href="{{ route('videos.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-button-play text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Video</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/video-requests*') ? 'active' : '' }}"
+                    href="{{ route('admin.video_requests.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-check-bold text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Perijinan Video</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}"
+                    href="{{ route('users.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Pengguna</span>
+                </a>
+            </li>
+
+            <div class="sidenav-footer mx-3 my-2">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="btn btn-danger btn-sm mb-0 w-100 " href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
+                        Keluar
+                    </a>
+                </form>
+            </div>
+
+        </ul>
+    </div>
+</aside>
