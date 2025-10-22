@@ -2,13 +2,43 @@
 
 @section('content')
     <div class="container py-4">
-        <h4>{{ $video->title }}</h4>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Berhasil!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Gagal!</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Perhatian!</strong> Terjadi kesalahan pada input:
+                <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <h4 class="text-light">{{ $video->title }}</h4>
 
         @if ($canWatch)
             <div class="text-center my-3">
                 @if (Str::startsWith($video->video_path, ['http', 'https']))
                     <div class="ratio ratio-16x9">
                         <iframe src="{{ $video->video_path }}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                @elseif (Str::startsWith($video->video_path, ['<iframe']))
+                    <div class="ratio ratio-16x9">
+                        {!! $video->video_path !!}
                     </div>
                 @else
                     <video width="100%" controls class="rounded shadow-sm">
@@ -56,7 +86,7 @@
             </div>
             <form method="POST" action="{{ route('customer.videos.requestTime', $video->id) }}">
                 @csrf
-                <button type="submit" class="btn btn-primary">Ajukan Perpanjangan Waktu</button>
+                <button type="submit" class="btn btn-primary">Ajukan Akses atau Perpanjangan Waktu</button>
             </form>
         @endif
     </div>

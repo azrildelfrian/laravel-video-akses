@@ -13,12 +13,18 @@ class VideoRequestController extends Controller
 {
     public function index()
     {
-        $requests = VideoRequest::with(['user', 'video'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $requests = VideoRequest::with('user', 'video')->latest()->get();
+
+        foreach ($requests as $req) {
+            $req->access = VideoAccess::where('user_id', $req->user_id)
+                ->where('video_id', $req->video_id)
+                ->where('active', true)
+                ->first();
+        }
 
         return view('admin.video_requests.index', compact('requests'));
     }
+
 
     public function approve(Request $request, $id)
     {
