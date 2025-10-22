@@ -49,7 +49,7 @@ DB_PASSWORD=
 php artisan key:generate
 ```
 
-6. **Jalankan migrasi dan seeding (opsional)**
+6. **Jalankan migrasi dan seeding**
 
 ```bash
 php artisan migrate
