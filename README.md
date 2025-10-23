@@ -88,6 +88,7 @@ password: customer2
 ## User & Admin
 
 -   Admin bisa mengelola video dan permintaan akses.
+-   Admin bisa mengelola akun pengguna (customer).
 -   Customer bisa menonton video sesuai izin dan mengajukan permintaan perpanjangan waktu.
 
 ## Folder Penting
