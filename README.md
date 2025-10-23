@@ -49,7 +49,7 @@ DB_PASSWORD=
 php artisan key:generate
 ```
 
-6. **Jalankan migrasi dan seeding**
+6. **Jalankan migrasi dan seeding untuk database**
 
 ```bash
 php artisan migrate
@@ -63,6 +63,27 @@ php artisan serve
 ```
 
 -   Server akan berjalan di: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## Akun Dummy (Contoh) Admin & Customer
+
+-   Akun admin:
+
+```bash
+email: admin@example.com
+password: admin123
+```
+
+-   Akun customer:
+
+```bash
+email: customer1@example.com
+password: customer1
+```
+
+```bash
+email: customer2@example.com
+password: customer2
+```
 
 ## User & Admin
 
